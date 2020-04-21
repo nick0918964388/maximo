@@ -1,0 +1,19 @@
+Problem
+Maximo login screen displays error message after a user logs out and try to log back in again within one minute after installing Maximo feature pack 7.6.0.8,
+
+Symptom
+Message:
+
+The LTPA token that is used to login is invalid. LTPA tokens are used for the login process when WebSphere Application 
+Server Security is enabled. Wait a few seconds and then try again to login. If the problem persists, 
+clear your browser cookies or restart the browser.
+
+Resolving The Problem
+Beginning with Maximo 7.6.0.8, the default behavior is to prevent a user login within one minute of the user logging out. 
+This is intentional.  It addresses a LTPA-token related security exposure.
+
+For clients who use SSL, the exposure is restricted to the local server only. 
+If the restricted risk is acceptable, go to the System Properties application, 
+change the value of system property mxe.ltpatoken.kill from to 0, 
+and select the property and click Live Refresh. Disabling mxe.ltpatoken.kill permits 
+users to log in to Maximo again immediately after logout.

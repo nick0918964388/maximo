@@ -1,0 +1,32 @@
+DOCLINKS Configuration (Attachments) | IBM Maximo
+1. Create your doclinks folder
+Create a folder, e.g. /doclinks
+and a sub-folder, e.g. /doclinks/default
+
+2. Configure System Properties
+You need to configure the following system properties
+mxe.doclink.doctypes.defpath => /doclinks/default
+mxe.doclink.doctypes.topLevelPaths => /doclinks
+mxe.doclink.path01 => /doclinks=http://<servername>/doclinks
+
+Restart your MXServer.
+
+3. Change httpd.conf (e.g. in my case C:\IBM\HTTPServer\conf\httpd.conf)
+Open the httpd.conf and add the following section to the end of the file
+
+Alias /doclinks/ "/doclinks"
+<Directory "/doclinks">
+Options Indexes MultiViews
+AllowOverride None
+Require all granted
+</Directory>
+
+
+Restart the HTTP Server.
+You can than check if you can access your doclinks folder by entering http://<servername>/doclinks (e.g. http://localhost/doclinks) in your browser.
+
+4. Configure Attachment folders in Maximo
+Open any Application in Maximo (e.g. Assets) and select "Attachment Library/Folders > Manage Folders" by using Select Action.
+Change the Default File Path for each folder in this list
+suppose for images folder to /doclinks/images.
+If the folder doesn't exist, it will be automatically created for you. Only /doclinks has to be already present.

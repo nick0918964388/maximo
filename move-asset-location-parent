@@ -1,0 +1,10 @@
+當有需要移動設備時，使用
+
+newAssetMbo.setValue("NEWSITE", valData[0].getData().substring(0, 2), 11L);
+newAssetMbo.setValue("NEWPARENT", oldParent, 11L);
+
+((Asset) newAssetMbo).moveAssetWithinNonInventory(oldLocation, "AMI Import Update Add New Meter!!", mxServer.getDate(),
+							"MAXADMIN", newAssetMbo.getString("wonum"), newAssetMbo.getString("newparent"), true, true, true);
+              
+其中 需要先指定NEWSITE , 其次再指定NEWPARENT , 因為NEWPARENT將會用NEWSITE作為檢核的依據，故需要成對出現。
+
